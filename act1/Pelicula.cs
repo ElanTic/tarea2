@@ -38,15 +38,15 @@ namespace act1
         
          public void agrega(Pelicula peli)
         {
-            if (nombre.CompareTo(peli.Nombre) < 0)
+            if (nombre.CompareTo(peli.Nombre) < 0) // alfabeticamente fue mayor
             {
                 if (next == null) { next = peli; peli.prev = this; }
                 else next.agrega(peli);
             }
-            else
-            {
-                prev.Next = peli;
-                peli.Next = this;
+            else 
+            {//alfaxeticawente fue menor
+                prev.Next = peli; //se liga el nuevo con el elemento anterior
+                peli.Next = this; //se liga el nuevo con el elemento actual
                 this.prev = peli;
             }
         }

@@ -18,8 +18,12 @@ namespace act1
             Console.WriteLine($"[1]consultar, [2]agregar pelicua, [3] salir");
             string input = Console.ReadLine();
             switch (input) {
-                case "1":consulta(); break;
-                case "2":alta();break;
+                case "1":
+                    consulta(); 
+                    break;
+                case "2":
+                    alta();
+                    break;
                 //case "3":baja(); break;
                 case "3": return;
                 default: Console.WriteLine("No disponible"); inicio();break;
@@ -27,14 +31,16 @@ namespace act1
         }
         public void alta() {
             int genre = -1;
-            do { genre = leerGenero(); } while (genre == -1);
-            if (genre == -2) {inicio();return;}
+            do { 
+                genre = leerGenero(); } 
+            while (genre == -1); 
+            if (genre == -2) {inicio();return;} //se cancelo 
             Console.WriteLine("nombre de la pelicula:");
-            string name = Console.ReadLine();
+            string name = Console.ReadLine(); //pide el nombre
             Console.WriteLine("anio de salida:");
             int anio = 0;
-            do { anio = leerEntero(); } while (anio < 0);
-            estanteria.agregar( new Pelicula(name, (Genero)genre, anio) );
+            do { anio = leerEntero(); } while (anio < 0);//pide un anio valido
+            estanteria.agregar( new Pelicula(name, (Genero)genre, anio) );//crea el objeto y lo pone en la lista
             Console.WriteLine("nice");
             inicio();
         }
@@ -55,11 +61,13 @@ namespace act1
                 case "2":
                     int genero = leerGenero();
                     if (genero < 0) break;
-                    peli = estanteria.search((Genero)genero);
+                    peli = estanteria.buscar_x_genero((Genero)genero);
                     while (peli != null) { 
                         Console.WriteLine(peli); peli = peli.Next;}
                     break;
-                case "3": estanteria.print();break;
+                case "3":
+                    estanteria.print();
+                    break;
                 default: Console.WriteLine("No disponible"); break;
             }
             inicio();
@@ -82,12 +90,12 @@ namespace act1
             {
                 Console.WriteLine($"[{genero}]  {Enum.GetName(typeof(Genero), genero)}");
             }
-            int genre = leerEntero();
-            if (genre < 0 || genre >= tamano)
-            {
-                if (genre == tamano) return -2;
+            int genre = leerEntero(); //indice del genero en la lista
+            if (genre < 0 || genre >= tamano) 
+            {//no es un elemento de la lista
+                if (genre == tamano) return -2;//se cancelo la operacion
                 Console.WriteLine("asi no era");
-                return -1;
+                return -1; //no es un valor valido
             }
             return genre;
         }

@@ -15,10 +15,10 @@ namespace act1
         }
         public void agregar(Pelicula peli)
         {
-            Pelicula head = estante[(int)peli.Genero];
+            Pelicula head = estante[(int)peli.Genero]; 
             if (head != null)
             {
-                if (head.Nombre.CompareTo(peli.Nombre) < 0){ 
+                if (head.Nombre.CompareTo(peli.Nombre) < 0){ // si el nuevo es alfabeticamente menor sera la nueva cabeza  
                     head.agrega(peli);
                 }
                 else
@@ -57,7 +57,7 @@ namespace act1
             return null;
 
         }
-        public Pelicula search(Genero gen)
+        public Pelicula buscar_x_genero(Genero gen)
         {
             if(gen == null) return null;
             return estante[(int) gen];
